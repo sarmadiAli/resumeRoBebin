@@ -7,8 +7,7 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     < >
-      {/* <Form /> */}
-      <R_list />
+      <Form />
     </>
   )
 }

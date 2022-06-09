@@ -1,10 +1,12 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
   CardContent,
   CardHeader,
   Grid,
+  Snackbar,
   TextField
 } from '@mui/material';
 import React from 'react';
@@ -40,13 +42,20 @@ export default function Form() {
       lable: 'شماره تماس'
     }
   ];
+  const [open, setOpen] = React.useState(false);
 
+  const subHandler = data => {
+    setOpen(true)
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <Card variant="outlined">
         <CardContent>
           <CardHeader sx={{ textAling: 'right' }} title="اطلاعات فرستنده" />
-          <form onSubmit={handleSubmit(e => console.log('davdav', e))}>
+          <form onSubmit={handleSubmit(subHandler)}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Box
@@ -65,6 +74,7 @@ export default function Form() {
                     render={({ ...feild }) => (
                       <TextField
                         fullWidth
+                        data-cy="textField"
                         {...feild}
                         {...register(item.name, {
                           required: {
@@ -86,7 +96,11 @@ export default function Form() {
               ))}
               <Grid item xs={12} display="flex" justifyContent="flex-end">
                 <Box>
-                  <Button variant="contained" color="primary" type="submit">
+                  <Button
+                    data-cy="subFormData"
+                    variant="contained"
+                    color="primary"
+                    type="submit">
                     ثبت
                   </Button>
                 </Box>
@@ -95,6 +109,15 @@ export default function Form() {
           </form>
         </CardContent>
       </Card>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        >
+        <Alert data-cy='alert_success' onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+    عملیات با موفقیت انجام شد
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -1,18 +1,28 @@
-import { AppBar, Toolbar, Typography } from '@mui/material'
-import React from 'react'
+import { AppBar, Toolbar, Typography } from '@mui/material';
+import Link from 'next/link';
+import React from 'react';
 
 export default function Header() {
   return (
     <>
-   
-    <AppBar>
-    <Toolbar>
-      <Typography   >
-        Scroll to see button
-      </Typography>
-    </Toolbar>
-  </AppBar>
-  <Toolbar id="back-to-top-anchor" />
+      <AppBar>
+        <Toolbar>
+          <Link
+          
+            href={{
+              pathname: '/'
+            }}>
+            <a>Send Email</a>
+          </Link>
+          <Link
+            href={{
+              pathname: '/list'
+            }}>
+            <a style={{marginRight:'40px'}}>resume List</a>
+          </Link>
+        </Toolbar>
+      </AppBar>
+      <Toolbar id="back-to-top-anchor" />
     </>
-  )
+  );
 }

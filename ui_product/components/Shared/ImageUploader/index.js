@@ -87,9 +87,9 @@ const ImageUploader = ({
           </Box>
         )}
         <input
-          {...register('myImage', {
-            required: true
-          })}
+          // {...register('myImage', {
+          //   required: true
+          // })}
           ref={imageRef}
           id="image"
           type="file"

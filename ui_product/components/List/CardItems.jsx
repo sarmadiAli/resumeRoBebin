@@ -6,12 +6,11 @@ import Fab from '@mui/material/Fab';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
 export default function CardItems({ data }) {
-  console.log(data);
   return (
     <Grid item xs={6}>
       <Card variant="outlined">
         <CardContent>
-          <Box display={'flex'}>
+          <Box display={'flex'} data-cy='listItem'>
             <Box
               sx={{
                 width: '160px',

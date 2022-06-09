@@ -80,3 +80,8 @@
 span {
     direction: rtl;
 }
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
