@@ -47,7 +47,7 @@ export default function CardItems({ data }) {
                 flexDirection={'column'}
               >
                 {data.availableOn.map((item, index) => (
-                  <Fab key={index}>
+                  <Fab key={index} sx={{mt:2}}>
                     {item === 'whatsapp' ? <WhatsAppIcon /> : <TelegramIcon />}
                   </Fab>
                 ))}

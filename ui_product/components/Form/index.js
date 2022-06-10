@@ -1,5 +1,6 @@
 import {
   Alert,
+  Autocomplete,
   Box,
   Button,
   Card,
@@ -26,11 +27,7 @@ export default function Form() {
       type: 'text',
       lable: 'نام'
     },
-    {
-      name: 'contect-us',
-      type: 'text',
-      lable: 'راه ارتباطی'
-    },
+
     {
       name: 'email',
       type: 'text',
@@ -45,11 +42,17 @@ export default function Form() {
   const [open, setOpen] = React.useState(false);
 
   const subHandler = data => {
-    setOpen(true)
+    console.log('subHandler', data);
+    setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  const availableOn = [
+    { id: 1, name: 'whatsapp' },
+    { id: 2, name: 'Telegram' },
+    { id: 3, name: 'both' },
+  ];
   return (
     <>
       <Card variant="outlined">
@@ -67,7 +70,6 @@ export default function Form() {
               </Grid>
               {FormList.map((item, index) => (
                 <Grid item xs={6} key={index}>
-                  {console.log('item', item)}
                   <Controller
                     name={item.name}
                     control={control}
@@ -94,6 +96,43 @@ export default function Form() {
                   />
                 </Grid>
               ))}
+              <Grid item xs={6}>
+                <Controller
+                  name="availableOn"
+                  control={control}
+                  onChange={([, data]) => data}
+                  render={({ field: { onChange, value } }) => (
+                    <Autocomplete
+                      disablePortal
+                      name="availableOn"
+                      options={availableOn || []}
+                      sx={{ width: '100%' }}
+                      getOptionLabel={option => {
+                        if (option.name) return option.name;
+                        return option;
+                      }}
+                      value={value}
+                      onChange={(e, newValue) => {
+                        onChange(newValue?.name || '');
+                      }}
+                      renderInput={params => (
+                        <TextField
+                          {...params}
+                          {...register('availableOn', {
+                            required: {
+                              value: true,
+                              message: 'این فیلد الزامی است'
+                            }
+                          })}
+                          error={errors.availableOn}
+                          helperText={errors?.availableOn?.message || null}
+                          label="راه های ارتباطی"
+                        />
+                      )}
+                    />
+                  )}
+                />
+              </Grid>
               <Grid item xs={12} display="flex" justifyContent="flex-end">
                 <Box>
                   <Button
@@ -109,13 +148,13 @@ export default function Form() {
           </form>
         </CardContent>
       </Card>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        >
-        <Alert data-cy='alert_success' onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-    عملیات با موفقیت انجام شد
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          data-cy="alert_success"
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: '100%' }}>
+          عملیات با موفقیت انجام شد
         </Alert>
       </Snackbar>
     </>
