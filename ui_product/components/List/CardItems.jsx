@@ -10,7 +10,7 @@ export default function CardItems({ data }) {
     <Grid item xs={6}>
       <Card variant="outlined">
         <CardContent>
-          <Box display={'flex'} data-cy='listItem'>
+          <Box display={'flex'} data-cy="listItem">
             <Box
               sx={{
                 width: '160px',
@@ -28,29 +28,32 @@ export default function CardItems({ data }) {
               display={'flex'}
               justifyContent={'space-between'}
               width={'calc(100% - 160px)'}>
-              <Box mt={2}  ml={2} display='flex' flexDirection={'column'} justifyContent="space-around" >
+              <Box mt={2} ml={2} display="flex" flexDirection={'column'}>
                 <Box display={'flex'} justifyContent="space-between">
                   <Typography variant="h6" color="text.secondary">
                     {':نام'}
                   </Typography>
                   <Typography variant="h6">{data.name}</Typography>
                 </Box>
-                <Box display={'flex'} justifyContent="space-between">
+                <Box display={'flex'} justifyContent="space-between" mt={4}>
                   <Typography variant="h6" color="text.secondary">
                     {':نام کاربری'}
                   </Typography>
                   <Typography variant="h6">{data.username}</Typography>
                 </Box>
-              </Box>
-              <Box 
-                display={'flex'}
-                flexDirection={'column'}
-              >
-                {data.availableOn.map((item, index) => (
-                  <Fab key={index} sx={{mt:2}}>
-                    {item === 'whatsapp' ? <WhatsAppIcon /> : <TelegramIcon />}
-                  </Fab>
-                ))}
+                <Box display={'flex'}>
+                  {data.availableOn.map((item, index) => (
+                    <Fab
+                      key={index}
+                      sx={{ ml: 2, mt:2, borderRadius: '10px', width: 40 , height:40 }}>
+                      {item === 'whatsapp' ? (
+                        <WhatsAppIcon />
+                      ) : (
+                        <TelegramIcon />
+                      )}
+                    </Fab>
+                  ))}
+                </Box>
               </Box>
             </Box>
           </Box>
