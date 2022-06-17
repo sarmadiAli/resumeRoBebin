@@ -41,8 +41,7 @@ export default function Form() {
   ];
   const [open, setOpen] = React.useState(false);
 
-  const subHandler = data => {
-    console.log('subHandler', data);
+  const subHandler = () => {
     setOpen(true);
   };
   const handleClose = () => {

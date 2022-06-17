@@ -6,7 +6,7 @@ import { Grid } from '@mui/material';
 export default function R_list() {
   return (
     <Grid  container spacing={3}>
-      {listData.map((ele, index) => (
+      {listData.map((ele) => (
         <CardItems data={ele} key={ele.id}/>
       ))}
     </Grid>

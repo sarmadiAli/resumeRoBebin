@@ -6,7 +6,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const ImageUploader = ({
   setImage: setImageProp,
   title = 'تصویر را در این بخش بیندازید',
-  register
 }) => {
   const imageRef = React.useRef(null);
   const [image, setImage] = React.useState(null);

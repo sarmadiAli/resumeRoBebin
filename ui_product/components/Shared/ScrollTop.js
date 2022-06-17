@@ -1,6 +1,5 @@
 import { Box, Fade, useScrollTrigger } from "@mui/material";
 
-import PropTypes from "prop-types";
 
 function ScrollTop(props) {
     const { children, window } = props;
